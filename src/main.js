@@ -4,9 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import fastclick from 'fastclick'
-import 'styles/reset.css'
-import 'styles/sell-icon.css'
-import 'styles/border.css'
+import '@/assets/styles/index.styl'
 
 Vue.config.productionTip = false
 // 解决移动端click事件300ms延迟问题

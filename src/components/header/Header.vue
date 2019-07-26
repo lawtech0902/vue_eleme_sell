@@ -79,7 +79,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '~styles/mixins.styl'
+@import '~styles/mixin.styl'
 
 .header
   position: relative
@@ -180,8 +180,10 @@ export default {
     height: 28px
     line-height: 28px
     padding: 0 22px 0 12px
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
     background: rgba(7, 17, 27, 0.2)
-    ellipsis()
 
     .bulletin-title
       display: inline-block
@@ -200,9 +202,9 @@ export default {
 
     .icon-keyboard_arrow_right
       position: absolute
+      font-size: 10px
       right: 12px
       top: 8px
-      font-size: 10px
 
   .background
     position: absolute
