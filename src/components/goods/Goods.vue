@@ -33,6 +33,7 @@
             <h1 class="title">{{ item.name }}</h1>
             <ul>
               <li
+                @click="selectFood(food, $event)"
                 v-for="(food, index) in item.foods"
                 :key="index"
                 class="food-item border-1px"
@@ -69,6 +70,7 @@
         :minPrice="seller.minPrice"
       ></v-cart>
     </div>
+    <v-food @add="addFood" :food="selectedFood" ref="food"></v-food>
   </div>
 </template>
 
@@ -77,12 +79,14 @@ import BScroll from 'better-scroll'
 import axios from 'axios'
 import Shopcart from '@/components/shopcart/Shopcart'
 import CartControl from '@/components/cartControl/CartControl'
+import Food from '@/components/food/Food'
 
 export default {
   name: 'Goods',
   components: {
     'v-cart': Shopcart,
-    'v-control': CartControl
+    'v-control': CartControl,
+    'v-food': Food
   },
   props: {
     seller: Object
@@ -91,7 +95,8 @@ export default {
     return {
       goods: [],
       listHeight: [],
-      scrollY: 0
+      scrollY: 0,
+      selectedFood: {}
     }
   },
   computed: {
@@ -126,6 +131,13 @@ export default {
       let foodList = this.$refs.foodList
       let el = foodList[index]
       this.foodsScroll.scrollToElement(el, 300)
+    },
+    selectFood (food, event) {
+      if (!event._constructed) {
+        return
+      }
+      this.selectedFood = food
+      this.$refs.food.show()
     },
     addFood (target) {
       this._drop(target)
